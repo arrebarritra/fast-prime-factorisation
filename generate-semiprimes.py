@@ -1,6 +1,6 @@
 from sympy.ntheory.generate import randprime
 
-interval_boundaries = [10**i for i in [1, 2, 5, 10, 15, 20, 25, 30, 40, 50]]
+interval_boundaries = [10**i for i in [5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20]]
 amount_per_interval = 5
 
 file = open('semiprimes.txt', 'a')
