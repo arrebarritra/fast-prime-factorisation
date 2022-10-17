@@ -3,6 +3,11 @@ import math
 import pandas as pd
 from time import time
 
+bench = pd.read_csv('benchmark.csv')
+if len(bench) > 0:
+    run_id = int(max(bench['run_id']) + 1)
+else:
+    run_id = 0
 
 for alg in ALGORITHMS:
     semiprimes = open('semiprimes.txt')
@@ -25,5 +30,10 @@ for alg in ALGORITHMS:
             id = max(bench[(bench['algorithm']==alg)&(bench['N']==str(N))]['id']) + 1
         else:
             id = 0
+        if len(bench) > 0:
+            id = max(bench[(bench['algorithm']==alg)&(bench['N']==str(N))]['id']) + 1
+        else:
+            id = 0
+        
         with open('benchmark.csv','a') as file:
-            file.write(f'{alg},{N},{exec_time},{id}\n')
+            file.write(f'{alg},{N},{exec_time},{id},{run_id}\n')
