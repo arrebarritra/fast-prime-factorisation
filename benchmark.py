@@ -21,6 +21,9 @@ for alg in ALGORITHMS:
             ALGORITHMS[alg](N)
         exec_time = time() - start
         bench = pd.read_csv('benchmark.csv')
-        id = len(bench[(bench['algorithm']==alg)&(bench['N']==N)])
+        if len(bench[(bench['algorithm']==alg)&(bench['N']==str(N))]['id']) > 0:
+            id = max(bench[(bench['algorithm']==alg)&(bench['N']==str(N))]['id']) + 1
+        else:
+            id = 0
         with open('benchmark.csv','a') as file:
             file.write(f'{alg},{N},{exec_time},{id}\n')
